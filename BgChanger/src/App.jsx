@@ -9,7 +9,7 @@ function App() {
       style={{ backgroundColor: color }}
     >
       <h1 className="flex flex-col items-center justify-center min-h-screen p-4 text-6xl font-bold text-white mb-4 text-center">Mood Exploration</h1>
-      <p class="text-black text-center mb-20 ">
+      <p class="text-white text-center mb-20 ">
       Describe a vibe, a place, or a feeling, and let Gemini find the perfect hue.
     </p>
       <div className="fixed flex flex-wrap justify-center bottom-12 inset-x-0 px-2">

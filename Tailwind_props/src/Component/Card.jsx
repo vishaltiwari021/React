@@ -6,7 +6,6 @@ function Card({username}) {
     <div class="flex flex-col items-center p-7 rounded-2xl">
   <div>
     <img class="size-48 shadow-xl rounded-md" src="cow.jpg" alt="image not found" />
-
   </div>
   <div class="flex">
     <span class="text-2xl font-medium">{username}</span>
