@@ -17,7 +17,7 @@ function Singup() {
         try {
             const userData = await authservice.createAccount(data)
             if (userData) {
-                const userData = await authservice.currentUser()
+                const userData = await authservice.getcurrentUser()
                 if(userData) dispatch(login(userData))
                     navigate('/');
             }
