@@ -1,6 +1,6 @@
 import React from 'react'
 import {Singup as SingupForm} from '../components'
-function Singup() {
+function Signup() {
   return (
     <div className='py-8'>
         <SingupForm />
@@ -8,4 +8,4 @@ function Singup() {
   )
 }
 
-export default Singup
+export default Signup
