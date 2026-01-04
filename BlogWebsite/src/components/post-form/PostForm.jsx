@@ -12,7 +12,6 @@ function PostForm({post}) {
             title: post?.title || "",
             slug: post?.$id || "",
             content: post?.content || "",
-            // featuredImage: post?.featuredImage || "",
             status: post?.status || "active",
         }
     })
@@ -22,38 +21,41 @@ function PostForm({post}) {
 
     const submit = async(data)=>{
         if(post){
-        const file = data.image[0]? appwriteService.uploadFile(data.image[0]) : null
+        const file = data.image[0]? await appwriteService.uploadFile(data.image[0]) : null;
 
         if(file){
-            appwriteService.deleteFile(post.featuredImageId)
+            appwriteService.deleteFile(post.featuredImage);
         }
 
         const dbpost  = await appwriteService.updatePost(
-            post.$id,{
-                ...data,
-                featuredImage: file ? file.$id : undefined,
-            }
-        )
+        post.$id,{ 
+        ...data,
+        // title:  data.title,
+        // slug: data.slug,
+        // content: data.content,
+        featuredImage: file ?  file.$id : undefined,
+        // status: data.status,
+        
+    }
+)
         if(dbpost){
-            navigate(`/post/${dbpost.$id}`)
+            navigate(`/post/${dbpost.slug}`)//$id changed to slug
         }
         }
         else{
             const file = await appwriteService.uploadFile(data.image[0])
 
             if(file){
-                const fileId = file.$id
-                data.featuredImage = fileId
-                const dbpost = await appwriteService.createPost({
-                    ...data,
-                    userId: userData.$id,
-                })
+            const fileId = file.$id;
+            data.featuredImage = fileId;
+            const dbpost = await appwriteService.createPost({...data, authorId: userData.$id,
+})
                 if(dbpost){
-                    navigate(`/post/${dbpost.$id}`)
+                navigate(`/post/${dbpost.$id}`)
                 }
             }
         }
-    }
+    };
 
     const slugTransform = useCallback((value) => {
         if (value && typeof value === "string")
